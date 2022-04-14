@@ -16,6 +16,10 @@ const boxAllEl = document.querySelectorAll<HTMLDivElement>('.js-box');
 
 const bodyEl = document.querySelector<HTMLBodyElement>('body');
 
+const inputEl = document.querySelector<HTMLInputElement>('.js-input')
+
+const printEl = document.querySelector<HTMLParagraphElement>('.js-print')
+
 button1El.addEventListener('click', () => {
     box1El.style.backgroundColor = 'yellow';
 })
@@ -61,17 +65,20 @@ box1El.addEventListener('mouseenter', () => {
     box1El.style.backgroundColor = 'red';
 })
 
-box5El.addEventListener('mouseover', () => {
+box5El.addEventListener('mouseenter', () => {
     let seconds = 1;
     const timer = setInterval(() => {
         box5El.innerText = (seconds++).toString();
         if (seconds === 11) {
             clearInterval(timer);
         }  
-        box5El.onmouseout = () => {
+        box5El.addEventListener ('mouseleave',() => {
             clearInterval(timer);
             box5El.innerText = '0';
-        }
+        })
     }, 1000)
 });
 
+inputEl.addEventListener('input', () => {
+    printEl.textContent = inputEl.value;
+});
