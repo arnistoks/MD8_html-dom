@@ -41,11 +41,12 @@ button5El.addEventListener('click', () => {
     box5El.style.backgroundColor = color[color.length * Math.random() | 0];
 })
 
-
+let timer: NodeJS.Timer;
 
 button6El.addEventListener('click', () => {
     let seconds = 1;
-    const timer = setInterval(() => {
+    clearInterval(timer)
+    timer = setInterval(() => {
         box6El.innerText = (seconds++).toString();
         if (box6El.innerText === '10') {
             clearInterval(timer), seconds = 0;
@@ -65,15 +66,18 @@ box1El.addEventListener('mouseenter', () => {
     box1El.style.backgroundColor = 'red';
 })
 
+let interval: NodeJS.Timer;
+
 box5El.addEventListener('mouseenter', () => {
     let seconds = 1;
-    const timer = setInterval(() => {
+    clearInterval(interval)
+    interval = setInterval(() => {
         box5El.innerText = (seconds++).toString();
         if (seconds === 11) {
-            clearInterval(timer);
+            clearInterval(interval);
         }  
         box5El.addEventListener ('mouseleave',() => {
-            clearInterval(timer);
+            clearInterval(interval);
             box5El.innerText = '0';
         })
     }, 1000)
